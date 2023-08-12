@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center mt-5 pb-3">List of Books</h1>
+{% if data %}
+<div style="width: 90%; margin: auto;">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Id</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author name</th>
+                <th scope="col">Category</th>
+                <th scope="col">first publications</th>
+                <th scope="col">last publications</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in data %}
+            <tr style="margin-auto">
+                <th scope="row">{{book.id}}</th>
+                <td>{{book.book_name}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.category}}</td>
+                <td>{{book.first_pub}}</td>
+                <td>{{book.last_pub}}</td>
+                <td><a href="{% url 'editbook' id=book.id %}" class="btn btn-secondary">Update</a>
+                    <a href="{% url 'deleteBook' id=book.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+    <h1 class="text-center text-warning" >No data avilable</h1>
+
+{% endif %}
+ 
+{% endblock content %}
